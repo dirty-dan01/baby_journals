@@ -26,7 +26,7 @@ fun AppNav(vm: BabyViewModel) {
         composable(Routes.LIST) {
             BabyListScreen(
                 state = vm.state,
-                onAddClick = { nav.navigate(Routes.LIST) },
+                onAddClick = { nav.navigate(Routes.ADD) },
                 onOpen = { id -> nav.navigate("detail?$id") }
             )
         }

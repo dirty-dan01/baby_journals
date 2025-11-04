@@ -63,7 +63,7 @@ fun BabyListScreen(
                 }
             }
             if (ui.babies.isEmpty()){
-                Text("No babies yet. Tap = to add one")
+                Text("No babies yet. Tap + to add one")
             }
         }
     }
