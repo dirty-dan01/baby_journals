@@ -56,7 +56,11 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
 //  Composable Navigation
     implementation("androidx.navigation:navigation-compose:2.9.5")
+//  Coil
+    implementation("io.coil-kt.coil3:coil-compose:3.3.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

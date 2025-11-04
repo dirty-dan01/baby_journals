@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
-import java.sql.Date
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.util.UUID
 
@@ -25,7 +25,7 @@ class BabyViewModel(
             .map { BabyListUiState(it) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), BabyListUiState())
 
-    suspend fun addBaby(
+     fun addBaby(
         name: String,
         birthDate: LocalDate,
         heightCm: Double,
@@ -33,7 +33,7 @@ class BabyViewModel(
         bloodType: String? = null,
         photoUrl: String? = null,
         notes: String? = null
-    ) {
+    ) = viewModelScope.launch {
         val baby = Baby(
             id = UUID.randomUUID().toString(),
             name = name,
