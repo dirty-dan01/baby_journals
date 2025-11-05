@@ -33,23 +33,32 @@ fun BabyDetailsScreen(
     id: String,
     state: StateFlow<BabyListUiState>,
     onBack: () -> Unit
-){
+) {
     val ui by state.collectAsState()
-    val baby = ui.babies.firstOrNull{it.id == id}
+    val baby = ui.babies.firstOrNull { it.id == id }
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text(baby?.name ?: "Detail") },
-            navigationIcon = { TextButton(onClick = onBack) {Text("Back")}
-            }) }
+            TopAppBar(
+                title = { Text((baby?.firstName + " " + baby?.lastName)) },
+                navigationIcon = {
+                    TextButton(onClick = onBack) { Text("Back") }
+                })
+        }
     ) { pad ->
-        if (baby == null){
-            Box(Modifier.padding(pad).padding(16.dp)){
-                Text("Not found")}
+        if (baby == null) {
+            Box(Modifier
+                .padding(pad)
+                .padding(16.dp)) {
+                Text("Not found")
+            }
             return@Scaffold
         }
         Column(
-            Modifier.padding(pad).padding(16.dp).fillMaxWidth()
+            Modifier
+                .padding(pad)
+                .padding(16.dp)
+                .fillMaxWidth()
         ) {
             baby.photoUr?.let {
                 Image(
@@ -67,8 +76,8 @@ fun BabyDetailsScreen(
             Text("Blood type: ${baby.bloodType} ?: Unknown")
             Text("Height: ${baby.heightCm} cm")
             Text("Weight: ${baby.weightKg} kg")
-            baby.notes?.takeIf { it.isNotBlank() }?.let {
-                Spacer(Modifier.height(8.dp)); Text("Notes: $it")
+            baby.allergies?.takeIf { it.isNotBlank() }?.let {
+                Spacer(Modifier.height(8.dp)); Text("Allergies: $it")
             }
         }
     }

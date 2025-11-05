@@ -32,8 +32,8 @@ fun AppNav(vm: BabyViewModel) {
         }
         composable(Routes.ADD) {
             AddBabyScreen(
-                onSave = { name, birth, h, w, bt, photo, notes ->
-                    vm.addBaby(name, birth, h, w, bt, photo, notes)
+                onSave = { firstName, lastName, birth, h, w, bt, photo, allergies ->
+                    vm.addBaby(firstName, lastName, birth, h, w, bt, photo, allergies)
                     nav.popBackStack()
                 },
                 onCancel = { nav.popBackStack() }

@@ -25,24 +25,26 @@ class BabyViewModel(
             .map { BabyListUiState(it) }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), BabyListUiState())
 
-     fun addBaby(
-        name: String,
+    fun addBaby(
+        firstName: String,
+        lastName: String,
         birthDate: LocalDate,
         heightCm: Double,
         weightKg: Double,
         bloodType: String? = null,
         photoUrl: String? = null,
-        notes: String? = null
+        allergies: String? = null
     ) = viewModelScope.launch {
         val baby = Baby(
             id = UUID.randomUUID().toString(),
-            name = name,
+            firstName = firstName,
+            lastName = lastName,
             birthDate = birthDate.toString(),
             heightCm = heightCm,
             weightKg = weightKg,
             bloodType = bloodType,
             photoUr = photoUrl,
-            notes = notes,
+            allergies = allergies,
         )
         repo.add(baby)
     }
